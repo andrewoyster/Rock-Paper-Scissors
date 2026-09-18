@@ -18,16 +18,16 @@ function playGame() {
     humanChoice = humanChoice.toLowerCase();
 
     if (humanChoice === computerChoice) {
-      console.log("You tied!");
+      results.innerHTML = "You Tied!";
     } else if (
       (humanChoice === "rock" && computerChoice === "scissors") ||
       (humanChoice === "paper" && computerChoice === "rock") ||
       (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-      console.log("The Human Wins");
+      results.innerHTML = "You Won!";
       humanScore++;
     } else {
-      console.log("Computer Wins");
+      results.innerHTML = "The Computer Won!";
       computerScore++;
     }
   }
@@ -45,5 +45,7 @@ function playGame() {
     playRound("scissors", getComputerChoice());
   });
 }
+
+const results = document.querySelector(".results");
 
 playGame();
