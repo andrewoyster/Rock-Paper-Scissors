@@ -1,8 +1,8 @@
 const choices = ["rock", "paper", "scissors"];
-
 const rockButton = document.querySelector(".rock");
 const paperButton = document.querySelector(".paper");
 const scissorsButton = document.querySelector(".scissors");
+const score = document.querySelector(".score");
 
 function getComputerChoice() {
   const randomComputerChoice = Math.floor(Math.random() * choices.length);
@@ -13,8 +13,12 @@ function playGame() {
   // Beginning Scores
   let humanScore = 0;
   let computerScore = 0;
+  let gameOver = false;
 
   function playRound(humanChoice, computerChoice) {
+    if (gameOver) {
+      return;
+    }
     humanChoice = humanChoice.toLowerCase();
 
     if (humanChoice === computerChoice) {
@@ -29,6 +33,16 @@ function playGame() {
     } else {
       results.innerHTML = "The Computer Won!";
       computerScore++;
+    }
+
+    score.innerHTML = `Human: ${humanScore} | Computer: ${computerScore}`;
+
+    if (humanScore === 5) {
+      results.innerHTML = "You Won the Game!";
+      gameOver = true;
+    } else if (computerScore === 5) {
+      results.innerHTML = "The Computer Won the Game!!";
+      gameOver = true;
     }
   }
 
