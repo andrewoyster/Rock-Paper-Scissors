@@ -1,13 +1,12 @@
 const choices = ["rock", "paper", "scissors"];
 
+const rockButton = document.querySelector(".rock");
+const paperButton = document.querySelector(".paper");
+const scissorsButton = document.querySelector(".scissors");
+
 function getComputerChoice() {
   const randomComputerChoice = Math.floor(Math.random() * choices.length);
   return choices[randomComputerChoice];
-}
-
-function getHumanChoice() {
-  const userInput = prompt("Select rock, paper, or scissors");
-  return userInput;
 }
 
 function playGame() {
@@ -33,20 +32,18 @@ function playGame() {
     }
   }
 
-  for (let i = 0; i < 5; i++) {
-    console.log(`Round ${i + 1}`);
-    playRound(getHumanChoice(), getComputerChoice());
-    console.log(`Human Score: ${humanScore}`);
-    console.log(`Computer Score: ${computerScore}`);
-  }
+  // Add button eventListeners and call function
+  rockButton.addEventListener("click", function () {
+    playRound("rock", getComputerChoice());
+  });
 
-  if (humanScore > computerScore) {
-    alert("You won!");
-  } else if (computerScore > humanScore) {
-    alert("You lost!");
-  } else {
-    alert("You tied!");
-  }
+  paperButton.addEventListener("click", function () {
+    playRound("paper", getComputerChoice());
+  });
+
+  scissorsButton.addEventListener("click", function () {
+    playRound("scissors", getComputerChoice());
+  });
 }
 
 playGame();
